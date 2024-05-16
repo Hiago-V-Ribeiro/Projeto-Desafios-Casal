@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "40266161670",
+    "project_id": "projeto2bim-8e1d8",
+    "storage_bucket": "projeto2bim-8e1d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:40266161670:android:c2f53bef256c2ad1fcad87",
+        "android_client_info": {
+          "package_name": "com.example.projeto2bim"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjWCsoZK5YI0YdLDHIFe8Ndcu6VP5PUXU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
