@@ -2,24 +2,14 @@ package com.example.projeto2bim
 
 import android.content.Intent
 import android.os.Bundle
-import android.renderscript.ScriptGroup.Binding
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
-import androidx.recyclerview.widget.RecyclerView
-import com.example.projeto2bim.adapters.DadosAdapter
 import com.example.projeto2bim.databinding.InformaBinding
-import com.example.projeto2bim.databinding.MainactivityBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.example.projeto2bim.models.DispositivosModelo
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import java.util.ArrayList
 class Informa : AppCompatActivity() {
 
@@ -90,44 +80,6 @@ class Informa : AppCompatActivity() {
         }
 
     }
-    /*private fun getEmployeesData() {
-    dbRef = FirebaseDatabase.getInstance().getReference("Exemplo_Disp")
-
-
-    dbRef.addValueEventListener(object : ValueEventListener {
-        override fun onDataChange(snapshot: DataSnapshot) {
-            dispList.clear()
-            if (snapshot.exists()){
-                for (empSnap in snapshot.children){
-                    val empData = empSnap.getValue(DispositivosModelo::class.java)
-                    dispList.add(empData!!)
-                }
-                val mAdapter = DadosAdapter(dispList)
-
-                mAdapter.setOnItemClickListener(object : DadosAdapter.onItemClickListener{
-                    override fun onItemClick(position: Int) {
-
-                        val intent = Intent(this@Informa, Layout::class.java)
-
-                        intent.putExtra("dispId", dispList[position].dispId)
-                        intent.putExtra("comifavo", dispList[position].comifavo)
-                        intent.putExtra("filmefavo", dispList[position].filmefavo)
-                        intent.putExtra("seriefavo", dispList[position].seriefavo)
-                        intent.putExtra("musicfavo", dispList[position].musicfavo)
-                        intent.putExtra("alergias", dispList[position].alergias)
-                        intent.putExtra("comidaruim", dispList[position].comidaruim)
-                        intent.putExtra("nome", dispList[position].nome)
-                        startActivity(intent)
-                    }
-
-                })
-            }
-        }
-
-        override fun onCancelled(error: DatabaseError) {
-            TODO("Not yet implemented")
-        }
-    })*/
 }
 
 

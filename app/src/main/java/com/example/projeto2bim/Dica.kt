@@ -16,10 +16,16 @@ import java.util.ArrayList
 
 class Dica: AppCompatActivity() {
 
-    private lateinit var tvDispId: TextView
+    private lateinit var tvComida: TextView
+    private lateinit var tvFilme: TextView
+    private lateinit var tvSerie: TextView
+    private lateinit var tvMusica: TextView
+    private lateinit var tvAlergia: TextView
+    private lateinit var tvPiorComida: TextView
+
 
     private lateinit var dbRef: DatabaseReference
-    private lateinit var dispList: ArrayList<DispositivosModelo>
+    private var dispList: ArrayList<DispositivosModelo> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,33 +33,40 @@ class Dica: AppCompatActivity() {
         setContentView(R.layout.dicas)
 
         val minhaVariavel = intent.getStringExtra("comi")
-        tvDispId = findViewById(R.id.textView5)
-        tvDispId.text = minhaVariavel
+        tvComida = findViewById(R.id.textView5)
+        tvFilme = findViewById(R.id.textView6)
+        tvSerie = findViewById(R.id.textView7)
+        tvMusica = findViewById(R.id.textView8)
+        tvAlergia = findViewById(R.id.textView9)
+        tvPiorComida = findViewById(R.id.textView10)
 
-
-
-
-        /*dbRef = FirebaseDatabase.getInstance().getReference("DadosPessoais")
+        dbRef = FirebaseDatabase.getInstance().getReference("DadosPessoais")
 
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 dispList.clear()
                 if (snapshot.exists()) {
-                    for (empSnap in snapshot.children) {
-                        val empData = empSnap.getValue(DispositivosModelo::class.java)
-                        dispList.add(empData!!)
+                    for (favSnap in snapshot.children) {
+                        val favData = favSnap.getValue(DispositivosModelo::class.java)
+                        dispList.add(favData!!)
+                    }
 
+                    // Atualiza os TextViews após obter os dados
+                    if (dispList.isNotEmpty()) {
+                        tvComida.text = dispList[0].comifavo.toString()
+                        tvFilme.text = dispList[0].filmefavo.toString()
+                        tvSerie.text = dispList[0].seriefavo.toString()
+                        tvMusica.text = dispList[0].musicfavo.toString()
+                        tvAlergia.text = dispList[0].alergias.toString()
+                        tvPiorComida.text = dispList[0].comidaruim.toString()
                     }
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                // Handle onCancelled event
             }
         })
-        tvDispId.text = dispList[0].dispId
-        //só pra testar*/
-
     }
 }
 

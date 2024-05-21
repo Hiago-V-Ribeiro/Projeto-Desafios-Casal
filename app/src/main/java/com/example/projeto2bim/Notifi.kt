@@ -11,8 +11,8 @@ class Notifi: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.notificacao)
-        /*textView = findViewById(R.id.textviewData)
+        textView = findViewById(R.id.textviewData)
         val data = intent.getStringExtra("data")
-        textView.setText(data)*/
+        textView.setText(data)
     }
 }

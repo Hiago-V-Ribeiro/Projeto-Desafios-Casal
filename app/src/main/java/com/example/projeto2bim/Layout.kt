@@ -27,7 +27,6 @@ class Layout : AppCompatActivity() {
         val minhaVariavel = intent.getStringExtra("comidafav")
 
         val btn1: Button = findViewById(R.id.btndesadi)
-        val btn2: Button = findViewById(R.id.btndiario)
         val btn3: Button = findViewById(R.id.btnnotify)
         val comidafav = intent.getStringExtra("comi")
 
@@ -46,56 +45,54 @@ class Layout : AppCompatActivity() {
             }
         }
 
-        val comifavo = intent.getStringExtra("comifavo")
-        val filmefavo = intent.getStringExtra("filmefavo")
-        val seriefavo = intent.getStringExtra("seriefavo")
-        val musicfavo = intent.getStringExtra("musicfavo")
-        val alergias = intent.getStringExtra("alergias")
-        val comidaruim = intent.getStringExtra("comidaruim")
-
         btn1.setOnClickListener {
-            /*val intent = Intent(this@Layout, Desafidiario::class.java)
-            intent.putExtra("comidafav", tvDispId)
-            startActivity(intent)*/
-
-
             val intent = Intent(this, Desafidiario::class.java)
             intent.putExtra("comi", minhaVariavel)
             startActivity(intent)
         }
 
         btn3.setOnClickListener {
-            fun OnClick(v: View) {
-                makeNotificacao()
-            }
+            makeNotificacao()
         }
+
     }
-        private fun makeNotificacao(){
-            val channelId = "CHANNEL_ID_NOTIFICATION"
-            val builder = NotificationCompat.Builder(this, channelId).setSmallIcon(R.drawable.ic_notifications).setContentTitle("Notification Title").setContentText("Vai fazer logo o desafio").setAutoCancel(true).setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            val intent2 = Intent(this, Desafidiario::class.java)
-            intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent2.putExtra("data", "Vai fazer logo o desafio")
 
-            val pendingIntent = PendingIntent.getActivity(
-                applicationContext,
-                0,
-                intent2,
-                PendingIntent.FLAG_MUTABLE
-            )
-            builder.setContentIntent(pendingIntent)
-            val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    fun makeNotificacao() {
+        val channelId = "CHANNEL_ID_NOTIFICATION"
+        val builder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.drawable.ic_notifications)
+            .setContentTitle("Faz logo!!!")
+            .setContentText("Vai fazer logo o desafio")
+            .setAutoCancel(true)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                val notificatiochannel: NotificationChannel = notificationManager.getNotificationChannel(channelId)
-                if (notificatiochannel == null) {
-                    val importance = NotificationManager.IMPORTANCE_HIGH
-                    val notificationChannel = NotificationChannel(channelId, "alguma descrição", importance)
-                    notificatiochannel.setLightColor(Color.GREEN)
-                    notificatiochannel.enableVibration(true)
-                    notificationManager.createNotificationChannel(notificationChannel)
-                }
+        val intent = Intent(this, Notifi::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        intent.putExtra("data", "Vai fazer logo o desafio")
+
+        val pendingIntent = PendingIntent.getActivity(
+            applicationContext,
+            0,
+            intent,
+            PendingIntent.FLAG_MUTABLE
+        )
+        builder.setContentIntent(pendingIntent)
+
+        val notificationManager: NotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            val notificationChannel: NotificationChannel? =
+                notificationManager.getNotificationChannel(channelId)
+            if (notificationChannel == null) {
+                val importance = NotificationManager.IMPORTANCE_HIGH
+                val newNotificationChannel =
+                    NotificationChannel(channelId, "alguma descrição", importance)
+                newNotificationChannel.lightColor = Color.GREEN
+                newNotificationChannel.enableVibration(true)
+                notificationManager.createNotificationChannel(newNotificationChannel)
             }
-            notificationManager.notify(0, builder.build())
         }
+        notificationManager.notify(0, builder.build())
+    }
 }

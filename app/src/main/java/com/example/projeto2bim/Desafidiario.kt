@@ -82,7 +82,12 @@ class Desafidiario : AppCompatActivity() {
         val btnon: Button = findViewById(R.id.btndica)
         btnon.setOnClickListener{
             val intent = Intent(this@Desafidiario, Dica::class.java)
-            intent.putExtra("comi", minhaVariavel)
+            startActivity(intent)
+
+        }
+        val btnone: Button = findViewById(R.id.button)
+        btnone.setOnClickListener{
+            val intent = Intent(this@Desafidiario, Diario::class.java)
             startActivity(intent)
 
         }
